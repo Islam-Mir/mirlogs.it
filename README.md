@@ -59,4 +59,4 @@ Non serve avviare Python, terminali né porte esterne: avviando Apache in XAMPP,
 ## 🚀 Come visualizzare il sito
 1. Assicurati che **Apache** sia avviato nel pannello di controllo di **XAMPP**.
 2. Apri il browser e vai all'indirizzo:
-   [http://localhost/mirlogs/sito_nuovo/](http://localhost/mirlogs/sito_nuovo/)
+   [http://localhost/mirlogs/sito_nuovo/](http://localhost/mirlogs/)
