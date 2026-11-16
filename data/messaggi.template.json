@@ -1,0 +1,26 @@
+[
+    {
+        "id": "msg_6afaeda0c2149",
+        "data_ora": "16\/11\/2026 12:48:48",
+        "nome": "Mario Rossi",
+        "email": "mario.rossi@example.com",
+        "messaggio": "Ciao, bellissimo progetto!",
+        "ip": "192.0.2.1"
+    },
+    {
+        "id": "msg_6afaebf0147d1",
+        "data_ora": "16\/11\/2026 12:41:36",
+        "nome": "Giulia Bianchi",
+        "email": "giulia.bianchi@example.com",
+        "messaggio": "Test 2 riuscito alla perfezione!",
+        "ip": "127.0.0.1"
+    },
+    {
+        "id": "msg_6afaebe186e93",
+        "data_ora": "16\/11\/2026 12:41:21",
+        "nome": "Luca Verdi",
+        "email": "luca.verdi@example.com",
+        "messaggio": "Test salvataggio messaggio locale riuscito!",
+        "ip": "127.0.0.1"
+    }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "argomento": "presentazione",
+    "parole_chiave": ["chi sei", "chi e", "mir", "presentati", "presentazione", "autore", "proprietario", "nome"],
+    "risposta": "Sono Mir Islam! Sono originario del Bangladesh e vivo in Italia dall'adolescenza. Studio e costruisco progetti Web & Codice a Bologna, amo viaggiare e sono un lettore appassionato. Trovi tutte le mie avventure e progetti qui sul sito!"
+  },
+  {
+    "argomento": "studi_informatica",
+    "parole_chiave": ["studia", "studio", "informatica", "universita", "scuola", "competenze", "linguaggi", "tecnologie", "stack", "programmazione", "sviluppatore"],
+    "risposta": "Mir studia sviluppo Web & Codice. Le sue competenze principali includono PHP 8+ moderno e modulare, Python (FastAPI, script per AI), JavaScript nativo (ES6+), CSS3 avanzato, database relazionali SQL/MySQL e controllo versione con Git."
+  },
+  {
+    "argomento": "progetti",
+    "parole_chiave": ["progetti", "lavori", "portfolio", "chatbot", "codice", "github", "software"],
+    "risposta": "Tra i progetti principali di Mir trovi: questo portfolio personale modulare scritto in PHP nativo, architetture per chatbot e intelligenza artificiale locale, oltre a vari script e progetti su algoritmi e database relazionali."
+  },
+  {
+    "argomento": "viaggi",
+    "parole_chiave": ["viaggi", "paesi", "nazioni", "mondo", "quanti paesi", "30", "dove sei stato", "asia", "europa", "malesia", "thailandia", "sri lanka", "maldive"],
+    "risposta": "Mir ha esplorato diverse destinazioni tra Asia ed Europa. Tra le mete raccontate qui ci sono la Malesia, la Thailandia, lo Sri Lanka e le Maldive: l'atlante personale è nella pagina 'Viaggi'."
+  },
+  {
+    "argomento": "motto",
+    "parole_chiave": ["motto", "citazione", "frase", "filosofia", "significati"],
+    "risposta": "Il motto di viaggio di Mir è: «C’è un modo di viaggiare che non cerca mete, ma significati!». Per lui viaggiare è imparare senza libri e respirare il pianeta."
+  },
+  {
+    "argomento": "diving",
+    "parole_chiave": ["diving", "sub", "subacquea", "mare", "oceano", "tartarughe", "coralli", "immersioni"],
+    "risposta": "Mir è un appassionato di immersioni subacquee e diving! Ha nuotato accanto alle tartarughe marine alle Maldive ed esplorato le barriere coralline tropicali. Puoi vedere gli scatti subacquei nella sezione 'Galleria'."
+  },
+  {
+    "argomento": "libri",
+    "parole_chiave": ["libri", "lettura", "letture", "leggere", "biblioteca", "consigli", "saggi", "terzani", "clean code", "harari", "sapiens"],
+    "risposta": "Mir è un lettore appassionato! Tra i suoi libri preferiti consiglia 'Clean Code' di Robert C. Martin per il software, 'Un altro giro di giostra' di Tiziano Terzani per i viaggi e lo spirito, e 'Sapiens: Da animali a dèi' di Harari. Scopri di più nella pagina 'Libri'."
+  },
+  {
+    "argomento": "contatti",
+    "parole_chiave": ["contattare", "contatti", "contattarti", "scrivere", "scriverti", "email", "mail", "collaborare", "social", "instagram", "linkedin", "github", "messaggio", "parlarti"],
+    "risposta": "Puoi contattare Mir via email all'indirizzo islam.mir@aldini.istruzioneer.it oppure inviare un messaggio direttamente dalla pagina 'Contatti' di questo sito. È attivo anche su GitHub, LinkedIn e Instagram!"
+  }
+]

@@ -1,0 +1,22 @@
+# Dati sensibili e messaggi privati del form contatti (evita di pubblicare email e IP su GitHub)
+data/messaggi.json
+
+# File di ambiente con eventuali password / chiavi API segrete
+.env
+*.env
+config.local.php
+
+# File temporanei e log di sistema
+*.log
+*.tmp
+*.bak
+*.sql
+
+# File generati dal sistema operativo
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# File di configurazione dell'editor (VS Code, PhpStorm, ecc.)
+.vscode/
+.idea/
