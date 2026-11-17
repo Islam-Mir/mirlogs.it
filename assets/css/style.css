@@ -2514,6 +2514,62 @@ img {
 }
 .site-footer .nav-link { font-size: .9rem; }
 .site-footer .btn-editorial { font-size: .82rem; padding: 13px 22px; }
+
+/* Banner compatto per il consenso ai cookie, coerente con la palette editoriale */
+.footer-privacy-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 1rem 0 .25rem;
+  border-top: 1px solid var(--border-delicate);
+}
+.footer-privacy-links .nav-link {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: .82rem;
+  cursor: pointer;
+}
+.cookie-banner[hidden] { display: none; }
+.cookie-banner {
+  position: fixed;
+  z-index: 2000;
+  inset: auto 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: .85rem max(1.25rem, calc((100vw - 1100px) / 2));
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-delicate);
+  box-shadow: 0 -8px 28px rgba(42, 38, 35, .10);
+}
+.cookie-banner p { max-width: 760px; font-size: .82rem; line-height: 1.5; }
+.cookie-banner p a { color: var(--accent-terracotta); text-decoration: underline; text-underline-offset: 2px; }
+.cookie-banner-actions { display: flex; gap: .6rem; flex: 0 0 auto; }
+.cookie-action {
+  min-width: 104px;
+  padding: .55rem 1rem;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--text-main);
+  font: 600 .82rem var(--font-sans);
+  cursor: pointer;
+}
+.cookie-action:hover, .cookie-action:focus-visible { background: var(--bg-sand); }
+.privacy-content { max-width: 850px; margin: 0 auto; padding: 4rem 1.5rem; }
+.privacy-content h1 { margin-bottom: 1rem; font-size: clamp(2.4rem, 5vw, 4rem); }
+.privacy-content h2 { margin: 2rem 0 .65rem; font-size: 1.7rem; }
+.privacy-content p, .privacy-content li { color: var(--text-muted); margin-bottom: .8rem; }
+.privacy-content ul { padding-left: 1.4rem; }
+.cookie-preferences-button { margin-top: 1rem; }
+@media (max-width: 680px) {
+  .cookie-banner { align-items: stretch; flex-direction: column; gap: .65rem; padding: .85rem 1rem; }
+  .cookie-banner-actions { width: 100%; }
+  .cookie-action { flex: 1; }
+}
 @media (max-width: 768px) {
   .nav-link { font-size: .9rem; padding-block: 11px; }
   .footer-socials { gap: 12px 20px; }

@@ -51,6 +51,11 @@
 
         </div>
 
+        <nav class="footer-privacy-links" aria-label="Privacy e cookie">
+            <a href="privacy.php" class="nav-link">Privacy Policy</a>
+            <button type="button" class="nav-link cookie-preferences-open" data-cookie-preferences>Preferenze Cookie</button>
+        </nav>
+
         <div class="footer-copy">
             &copy; <?php echo $sito_anno; ?> <?php echo htmlspecialchars($sito_nome); ?> &bull; Progettato e sviluppato
             con il supporto dell'IA. Tutti i diritti riservati.
@@ -59,12 +64,21 @@
     </div>
 </footer>
 
+<section class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Preferenze cookie" aria-describedby="cookie-banner-text" hidden>
+    <p id="cookie-banner-text">Questo sito utilizza cookie tecnici essenziali e, previo tuo consenso, cookie analitici di Google Analytics per comprendere come viene visitato il sito. <a href="privacy.php">Leggi la Privacy Policy</a></p>
+    <div class="cookie-banner-actions">
+        <button type="button" class="cookie-action" data-cookie-choice="accept">Accetta</button>
+        <button type="button" class="cookie-action" data-cookie-choice="reject">Rifiuta</button>
+    </div>
+</section>
+
 <!-- SCRIPT JAVASCRIPT MODULARI (Uno per ciascun compito) -->
 <script src="assets/js/menu.js"></script>
 <script src="assets/js/modal.js"></script>
 <script src="assets/js/carosello.js"></script>
 <script src="assets/js/galleria.js"></script>
 <script src="assets/js/chatbot.js"></script>
+<script src="assets/js/cookie-consent.js"></script>
 
 </body>
 
