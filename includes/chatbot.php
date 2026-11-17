@@ -1,62 +1,39 @@
 <?php
-/**
- * ============================================================
- * CHATBOT.PHP - Widget dell'Assistente Virtuale Autonomo
- * ============================================================
- * Funziona al 100% in locale con PHP e JavaScript:
- * - Nessun server esterno necessario
- * - Chip rapidi con domande suggerite
- * - Modulo di digitazione libera
- * ============================================================
- */
+/** Widget dell'assistente virtuale disponibile su tutte le pagine. */
 ?>
 
-<!-- PULSANTE FLOTTANTE PER APRIRE/CHIUDERE LA CHAT -->
+<!-- Pulsante flottante per aprire o chiudere la chat -->
 <button class="chatbot-trigger" id="chatbot-trigger" aria-label="Apri la chat con l'assistente IA" title="Chiedi all'assistente IA" aria-controls="chatbot-window" aria-expanded="false" type="button">
-  <span class="chatbot-trigger-icon" aria-hidden="true">💬</span>
+  <span class="chatbot-trigger-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" focusable="false"><path d="M12 3.5c-4.7 0-8.5 3.2-8.5 7.2 0 2.2 1.2 4.1 3.2 5.4l-.8 3.2 3.8-1.7c.8.2 1.5.3 2.3.3 4.7 0 8.5-3.2 8.5-7.2S16.7 3.5 12 3.5Z"/><path d="M8.5 11h.1m3.4 0h.1m3.4 0h.1"/></svg>
+  </span>
   <span class="chatbot-trigger-label">Chiedi all'assistente IA</span>
 </button>
 
-<!-- FINESTRA DEL CHATBOT -->
-<div class="chatbot-window" id="chatbot-window" role="dialog" aria-labelledby="chatbot-title">
-  
-  <!-- Intestazione della chat -->
+<!-- Finestra del chatbot -->
+<div class="chatbot-window" id="chatbot-window" role="dialog" aria-labelledby="chatbot-title" aria-modal="false">
   <div class="chatbot-header">
     <h4 id="chatbot-title">
-      <span>🤖</span>
-      <span>Assistente di Mir Islam</span>
+      <span class="chatbot-avatar" aria-hidden="true">✦</span>
+      <span class="chatbot-heading-copy"><span>Assistente di Mir Islam</span><span class="chatbot-status">Qui per aiutarti</span></span>
     </h4>
-    <button class="chatbot-close" id="chatbot-close" aria-label="Chiudi finestra chat">&times;</button>
+    <button class="chatbot-close" id="chatbot-close" aria-label="Chiudi finestra chat" type="button">&times;</button>
   </div>
 
-  <!-- Area dei messaggi -->
-  <div class="chatbot-messages" id="chatbot-messages">
-    <!-- Messaggio di benvenuto -->
-    <div class="chat-bubble bot">
-      Ciao! 👋 Sono l'assistente di questo sito. Tutto ciò di cui hai bisogno è qui: chiedimi pure dei progetti, dei viaggi o delle letture di Mir!
-    </div>
+  <div class="chatbot-messages" id="chatbot-messages" aria-live="polite" aria-relevant="additions">
+    <div class="chat-bubble bot">Ciao! Sono l’assistente di questo sito. Chiedimi pure dei progetti, dei viaggi o delle letture di Mir.</div>
   </div>
 
-  <!-- Argomenti rapidi suggeriti (Chip) -->
-  <div style="padding: 8px 12px; background-color: var(--bg-card); border-top: 1px solid var(--border-delicate); display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none;">
-    <button type="button" class="chip-suggestion" data-prompt="Chi è Mir Islam?" style="background-color: var(--bg-sand); border: 1px solid var(--border-delicate); border-radius: var(--radius-pill); padding: 4px 10px; font-size: 0.72rem; cursor: pointer; white-space: nowrap; font-family: inherit;">👤 Chi è Mir?</button>
-    <button type="button" class="chip-suggestion" data-prompt="Cosa studia e quali progetti ha realizzato?" style="background-color: var(--bg-sand); border: 1px solid var(--border-delicate); border-radius: var(--radius-pill); padding: 4px 10px; font-size: 0.72rem; cursor: pointer; white-space: nowrap; font-family: inherit;">💻 Web &amp; Codice</button>
-    <button type="button" class="chip-suggestion" data-prompt="Quali paesi ha visitato e qual è il suo motto?" style="background-color: var(--bg-sand); border: 1px solid var(--border-delicate); border-radius: var(--radius-pill); padding: 4px 10px; font-size: 0.72rem; cursor: pointer; white-space: nowrap; font-family: inherit;">✈️ Viaggi</button>
-    <button type="button" class="chip-suggestion" data-prompt="Quali libri consiglia Mir?" style="background-color: var(--bg-sand); border: 1px solid var(--border-delicate); border-radius: var(--radius-pill); padding: 4px 10px; font-size: 0.72rem; cursor: pointer; white-space: nowrap; font-family: inherit;">📚 Libri</button>
-    <button type="button" class="chip-suggestion" data-prompt="Come posso contattare Mir?" style="background-color: var(--bg-sand); border: 1px solid var(--border-delicate); border-radius: var(--radius-pill); padding: 4px 10px; font-size: 0.72rem; cursor: pointer; white-space: nowrap; font-family: inherit;">📬 Contatti</button>
+  <div class="chatbot-suggestions" aria-label="Domande suggerite">
+    <button type="button" class="chip-suggestion" data-prompt="Chi è Mir Islam?">Chi è Mir?</button>
+    <button type="button" class="chip-suggestion" data-prompt="Cosa studia e quali progetti ha realizzato?">Web &amp; Codice</button>
+    <button type="button" class="chip-suggestion" data-prompt="Quali paesi ha visitato e qual è il suo motto?">Viaggi</button>
+    <button type="button" class="chip-suggestion" data-prompt="Quali libri consiglia Mir?">Libri</button>
+    <button type="button" class="chip-suggestion" data-prompt="Come posso contattare Mir?">Contatti</button>
   </div>
 
-  <!-- Form di invio domanda -->
   <form class="chatbot-form" id="chatbot-form">
-    <input 
-      type="text" 
-      class="chatbot-input" 
-      id="chatbot-input" 
-      placeholder="Fai una domanda..." 
-      autocomplete="off" 
-      required
-    >
+    <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Fai una domanda..." autocomplete="off" required>
     <button type="submit" class="chatbot-send" id="chatbot-send">Invia</button>
   </form>
-
 </div>
