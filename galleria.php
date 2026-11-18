@@ -61,7 +61,6 @@ $galleriaJson = json_encode($galleria, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_A
       <h1>Frammenti di <em>mondo</em></h1>
       <p>Viaggi, incontri e istanti sott’acqua. Sfoglia le fotografie, una alla volta.</p>
     </div>
-    <div class="gallery-heading-meta"><span id="gallery-total"><?php echo count($galleria); ?></span><small>fotografie</small></div>
   </header>
 
   <div class="gallery-toolbar">
@@ -77,15 +76,30 @@ $galleriaJson = json_encode($galleria, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_A
     </div>
   </div>
 
-  <section class="gallery-coverflow" id="gallery-stage" tabindex="0" aria-label="Carosello fotografico 3D. Usa le frecce per navigare.">
-    <div class="gallery-coverflow-top"><span class="gallery-live-mark"><i></i> Diario fotografico</span><span class="gallery-counter" id="gallery-counter" aria-live="polite">01 / <?php echo str_pad((string) count($galleria), 2, '0', STR_PAD_LEFT); ?></span></div>
-    <div class="gallery-coverflow-track" id="gallery-track" aria-live="polite"></div>
-    <button class="gallery-arrow gallery-arrow-prev" id="gallery-prev" type="button" aria-label="Fotografia precedente">←</button>
-    <button class="gallery-arrow gallery-arrow-next" id="gallery-next" type="button" aria-label="Fotografia successiva">→</button>
-    <div class="gallery-stage-progress" aria-hidden="true"><span id="gallery-progress"></span></div>
+  <section class="gallery-carousel" id="gallery-stage" tabindex="0" aria-label="Carosello fotografico. Usa le frecce per navigare.">
+    <div class="gallery-carousel-main">
+      <div class="gallery-carousel-photo" id="gallery-photo-viewport">
+        <div class="gallery-carousel-slides" id="gallery-track" aria-live="polite"></div>
+        <div class="gallery-carousel-top"><span class="gallery-live-mark"><i></i> Diario fotografico</span></div>
+        <div class="gallery-carousel-controls" aria-label="Controlli fotografia">
+          <button class="gallery-carousel-arrow gallery-carousel-prev" id="gallery-prev" type="button" aria-label="Fotografia precedente"><svg viewBox="0 0 66 43" aria-hidden="true" focusable="false"><path class="gallery-arrow-path-one" d="M40 4 44 0l22 21-22 22-4-4 17-17L40 4Z"/><path class="gallery-arrow-path-two" d="M20 4 24 0l22 21-22 22-4-4 17-17L20 4Z"/><path class="gallery-arrow-path-three" d="M0 4 4 0l22 21L4 43l-4-4 17-17L0 4Z"/></svg></button>
+          <button class="gallery-carousel-arrow gallery-carousel-next" id="gallery-next" type="button" aria-label="Fotografia successiva"><svg viewBox="0 0 66 43" aria-hidden="true" focusable="false"><path class="gallery-arrow-path-one" d="M40 4 44 0l22 21-22 22-4-4 17-17L40 4Z"/><path class="gallery-arrow-path-two" d="M20 4 24 0l22 21-22 22-4-4 17-17L20 4Z"/><path class="gallery-arrow-path-three" d="M0 4 4 0l22 21L4 43l-4-4 17-17L0 4Z"/></svg></button>
+        </div>
+        <div class="gallery-stage-progress" aria-hidden="true"><span id="gallery-progress"></span></div>
+      </div>
+      <aside class="gallery-carousel-card" id="gallery-caption" aria-live="polite">
+        <span class="gallery-card-category" id="gallery-caption-category">Diario di viaggio</span>
+        <h2 id="gallery-caption-title">Fotografie</h2>
+        <p id="gallery-caption-text">Un racconto per immagini, tappa dopo tappa.</p>
+      </aside>
+    </div>
+    <div class="gallery-carousel-footer">
+      <span class="gallery-thumbnails-label">Sfoglia le fotografie</span>
+      <ul class="gallery-thumbnails" id="gallery-thumbnails" aria-label="Seleziona una fotografia"></ul>
+    </div>
   </section>
 
-  <p class="gallery-hint">Trascina le schede o usa le frecce per scorrere il diario. Seleziona “Apri foto” per ingrandire.</p>
+  <p class="gallery-hint">Trascina la fotografia o usa le frecce per navigare. Seleziona l’immagine per ingrandirla.</p>
   <script type="application/json" id="gallery-data"><?php echo $galleriaJson ?: '[]'; ?></script>
 </div>
 

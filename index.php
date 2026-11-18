@@ -67,7 +67,7 @@ require_once 'includes/header.php';
                         class="clickable-image">
                 </div>
                 <div class="magazine-body">
-                    <span class="magazine-num">01 / PROGETTI</span>
+                    <span class="magazine-num">Progetti</span>
                     <h3 class="magazine-title">Imparo costruendo</h3>
                     <p class="magazine-excerpt">
                         Esercizi e progetti su JavaScript, PHP, Laravel, SQL e API: dal codice che gira nel browser
@@ -84,7 +84,7 @@ require_once 'includes/header.php';
                     <img src="assets/img/viaggi/M16.jpg" alt="Viaggi nel mondo" class="clickable-image">
                 </div>
                 <div class="magazine-body">
-                    <span class="magazine-num">02 / VIAGGI</span>
+                    <span class="magazine-num">Viaggi</span>
                     <h3 class="magazine-title">Luoghi, incontri, ricordi</h3>
                     <p class="magazine-excerpt">
                         Una raccolta di fotografie e appunti dai luoghi che ho attraversato: strade, paesaggi, incontri
@@ -101,7 +101,7 @@ require_once 'includes/header.php';
                     <img src="assets/img/libri/lib.jpg" alt="Grafica della sezione letture in preparazione">
                 </div>
                 <div class="magazine-body">
-                    <span class="magazine-num">03 / LETTURE</span>
+                    <span class="magazine-num">Letture</span>
                     <h3 class="magazine-title">Una biblioteca in arrivo</h3>
                     <p class="magazine-excerpt">
                         Sto preparando uno spazio per raccogliere libri, note e idee. La sezione è in costruzione e
@@ -116,146 +116,46 @@ require_once 'includes/header.php';
 
 </div> <!-- Fine container -->
 
-<!-- 3. CAROSELLO MULTIFUNZIONE A TUTTA LARGHEZZA (Tasti Tastiera, Mouse Drag, Frecce) -->
-<section class="carousel-editorial-wrap">
-    <div class="container">
+<!-- 3. CAROSELLO 3D MIR CAROUSEL A TUTTA LARGHEZZA (Frammenti di Mondo) -->
+<section class="mw-section home-carousel-section" data-mw-carousel data-autoplay="5000">
+    <div class="mw-bg"><i></i><i></i></div>
 
-        <div class="carousel-editorial-header">
-            <div>
-                <span class="section-label">Archivio Fotografico</span>
-                <h2 style="font-size: 2.2rem;">Frammenti di Mondo</h2>
-            </div>
+    <div class="mw-head">
+        <span class="section-label">Archivio Fotografico</span>
+        <h2 class="mw-title">Frammenti di Mondo</h2>
+    </div>
 
-            <!-- Controlli: Contatore e Frecce -->
-            <div style="display: flex; align-items: center; gap: 20px;">
-                <div class="carousel-counter" id="carousel-counter">01 / 12</div>
-                <div class="carousel-controls">
-                    <button class="carousel-btn" id="carousel-prev" aria-label="Foto precedente"
-                        type="button">&larr;</button>
-                    <button class="carousel-btn" id="carousel-next" aria-label="Foto successiva"
-                        type="button">&rarr;</button>
-                </div>
-            </div>
+    <figure class="mw-source">
+        <img src="assets/img/viaggi/M1.jpg" alt="Scatto 1">
+        <img src="assets/img/viaggi/M2.jpg" alt="Scatto 2">
+        <img src="assets/img/viaggi/M3.jpg" alt="Scatto 3">
+        <img src="assets/img/viaggi/M4.jpg" alt="Scatto 4">
+        <img src="assets/img/viaggi/M5.jpg" alt="Scatto 5">
+        <img src="assets/img/viaggi/M6.jpg" alt="Scatto 6">
+        <img src="assets/img/viaggi/M7.jpg" alt="Scatto 7">
+        <img src="assets/img/viaggi/M8.jpg" alt="Scatto 8">
+    </figure>
+
+    <div class="mw-stage-wrap">
+        <button class="gallery-carousel-arrow gallery-carousel-prev mw-arrow-prev" data-mw="prev" type="button" aria-label="Fotografia precedente">
+            <svg viewBox="0 0 66 43" aria-hidden="true" focusable="false">
+                <path class="gallery-arrow-path-one" d="M40 4 44 0l22 21-22 22-4-4 17-17L40 4Z"/>
+                <path class="gallery-arrow-path-two" d="M20 4 24 0l22 21-22 22-4-4 17-17L20 4Z"/>
+                <path class="gallery-arrow-path-three" d="M0 4 4 0l22 21L4 43l-4-4 17-17L0 4Z"/>
+            </svg>
+        </button>
+
+        <div class="mw-stage" tabindex="0" role="region" aria-roledescription="carosello" aria-label="Archivio fotografico">
+            <div class="mw-tilt"><div class="mw-ring"></div></div>
         </div>
 
-        <!-- Traccia Carosello con Drag e Cliccabile -->
-        <div class="carousel-track-container" id="carousel-track-container" tabindex="0"
-            aria-label="Galleria fotografica. Usa le frecce per scorrere.">
-            <div class="carousel-track">
-
-                <div class="carousel-slide">
-                    <img src="assets/img/viaggi/M1.jpg" alt="Scatto di Viaggio 1"
-                        class="carousel-slide-img clickable-image">
-                    <div class="carousel-slide-info">
-                        <span class="carousel-slide-tag">Esplorazione // 01</span>
-                        <span style="font-size: 0.85rem;">📸 Ingrandisci</span>
-                    </div>
-                </div>
-
-                <div class="carousel-slide">
-                    <img src="assets/img/viaggi/M2.jpg" alt="Scatto di Viaggio 2"
-                        class="carousel-slide-img clickable-image">
-                    <div class="carousel-slide-info">
-                        <span class="carousel-slide-tag">Esplorazione // 02</span>
-                        <span style="font-size: 0.85rem;">📸 Ingrandisci</span>
-                    </div>
-                </div>
-
-                <div class="carousel-slide">
-                    <img src="assets/img/viaggi/M3.jpg" alt="Scatto di Viaggio 3"
-                        class="carousel-slide-img clickable-image">
-                    <div class="carousel-slide-info">
-                        <span class="carousel-slide-tag">Esplorazione // 03</span>
-                        <span style="font-size: 0.85rem;">📸 Ingrandisci</span>
-                    </div>
-                </div>
-
-                <div class="carousel-slide">
-                    <img src="assets/img/viaggi/M4.jpg" alt="Scatto di Viaggio 4"
-                        class="carousel-slide-img clickable-image">
-                    <div class="carousel-slide-info">
-                        <span class="carousel-slide-tag">Esplorazione // 04</span>
-                        <span style="font-size: 0.85rem;">📸 Ingrandisci</span>
-                    </div>
-                </div>
-
-                <div class="carousel-slide">
-                    <img src="assets/img/viaggi/M5.jpg" alt="Scatto di Viaggio 5"
-                        class="carousel-slide-img clickable-image">
-                    <div class="carousel-slide-info">
-                        <span class="carousel-slide-tag">Esplorazione // 05</span>
-                        <span style="font-size: 0.85rem;">📸 Ingrandisci</span>
-                    </div>
-                </div>
-
-                <div class="carousel-slide">
-                    <img src="assets/img/viaggi/M6.jpg" alt="Scatto di Viaggio 6"
-                        class="carousel-slide-img clickable-image">
-                    <div class="carousel-slide-info">
-                        <span class="carousel-slide-tag">Esplorazione // 06</span>
-                        <span style="font-size: 0.85rem;">📸 Ingrandisci</span>
-                    </div>
-                </div>
-
-                <div class="carousel-slide">
-                    <img src="assets/img/viaggi/M7.jpg" alt="Scatto di Viaggio 7"
-                        class="carousel-slide-img clickable-image">
-                    <div class="carousel-slide-info">
-                        <span class="carousel-slide-tag">Esplorazione // 07</span>
-                        <span style="font-size: 0.85rem;">📸 Ingrandisci</span>
-                    </div>
-                </div>
-
-                <div class="carousel-slide">
-                    <img src="assets/img/viaggi/M8.jpg" alt="Scatto di Viaggio 8"
-                        class="carousel-slide-img clickable-image">
-                    <div class="carousel-slide-info">
-                        <span class="carousel-slide-tag">Esplorazione // 08</span>
-                        <span style="font-size: 0.85rem;">📸 Ingrandisci</span>
-                    </div>
-                </div>
-
-                <div class="carousel-slide">
-                    <img src="assets/img/viaggi/M13.jpg" alt="Diving Scatto 09"
-                        class="carousel-slide-img clickable-image">
-                    <div class="carousel-slide-info">
-                        <span class="carousel-slide-tag">Subacquea // 09</span>
-                        <span style="font-size: 0.85rem;">📸 Ingrandisci</span>
-                    </div>
-                </div>
-
-                <div class="carousel-slide">
-                    <img src="assets/img/viaggi/M14.jpg" alt="Tartaruga Marina 10"
-                        class="carousel-slide-img clickable-image">
-                    <div class="carousel-slide-info">
-                        <span class="carousel-slide-tag">Oceano // 10</span>
-                        <span style="font-size: 0.85rem;">📸 Ingrandisci</span>
-                    </div>
-                </div>
-
-                <div class="carousel-slide">
-                    <img src="assets/img/viaggi/M10.jpg" alt="Scatto di Viaggio 11"
-                        class="carousel-slide-img clickable-image">
-                    <div class="carousel-slide-info">
-                        <span class="carousel-slide-tag">Esplorazione // 11</span>
-                        <span style="font-size: 0.85rem;">📸 Ingrandisci</span>
-                    </div>
-                </div>
-
-                <div class="carousel-slide">
-                    <img src="assets/img/viaggi/M11.jpg" alt="Scatto di Viaggio 12"
-                        class="carousel-slide-img clickable-image">
-                    <div class="carousel-slide-info">
-                        <span class="carousel-slide-tag">Esplorazione // 12</span>
-                        <span style="font-size: 0.85rem;">📸 Ingrandisci</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-
+        <button class="gallery-carousel-arrow gallery-carousel-next mw-arrow-next" data-mw="next" type="button" aria-label="Fotografia successiva">
+            <svg viewBox="0 0 66 43" aria-hidden="true" focusable="false">
+                <path class="gallery-arrow-path-one" d="M40 4 44 0l22 21-22 22-4-4 17-17L40 4Z"/>
+                <path class="gallery-arrow-path-two" d="M20 4 24 0l22 21-22 22-4-4 17-17L20 4Z"/>
+                <path class="gallery-arrow-path-three" d="M0 4 4 0l22 21L4 43l-4-4 17-17L0 4Z"/>
+            </svg>
+        </button>
     </div>
 </section>
 

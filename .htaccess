@@ -1,3 +1,19 @@
 RewriteEngine On
+# Forza HTTPS solo in produzione; esclude localhost e indirizzi IP di rete locale
+# (altrimenti da smartphone/tablet in LAN il redirect HTTPS fallisce senza certificato)
 RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} !^localhost [NC]
+RewriteCond %{HTTP_HOST} !^127\.(0|1\d|2[0-9]|25[0-5]) [NC]
+RewriteCond %{HTTP_HOST} !^192\.168\ [NC]
+RewriteCond %{HTTP_HOST} !^10\ [NC]
+RewriteCond %{HTTP_HOST} !^172\.(1[6-9]|2[0-9]|3[01])\ [NC]
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Blocca l'accesso diretto ai file sensibili (.env, file di configurazione)
+<FilesMatch "^\.env">
+    Require all denied
+</FilesMatch>
+<Files ".env">
+    Order allow,deny
+    Deny from all
+</Files>

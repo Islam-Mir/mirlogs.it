@@ -1,19 +1,19 @@
 (() => {
-  // Intervallo dell'autoplay; la velocità del passaggio manuale si regola in style.css.
-  const AUTOPLAY_INTERVAL_MS = 1500;
-
   const initGallery = () => {
     const root = document.getElementById('gallery-experience');
     const dataNode = document.getElementById('gallery-data');
     if (!root || !dataNode) return;
 
     const photos = JSON.parse(dataNode.textContent || '[]');
-    if (!photos.length) return;
     const track = document.getElementById('gallery-track');
     const stage = document.getElementById('gallery-stage');
-    const counter = document.getElementById('gallery-counter');
     const progress = document.getElementById('gallery-progress');
-    const total = document.getElementById('gallery-total');
+    const thumbnailList = document.getElementById('gallery-thumbnails');
+    const captionCategory = document.getElementById('gallery-caption-category');
+    const captionTitle = document.getElementById('gallery-caption-title');
+    const captionText = document.getElementById('gallery-caption-text');
+    const previousButton = document.getElementById('gallery-prev');
+    const nextButton = document.getElementById('gallery-next');
     const autoplayButton = document.getElementById('gallery-autoplay');
     const fullscreenButton = document.getElementById('gallery-fullscreen');
     const filterButtons = [...root.querySelectorAll('[data-filter]')];
@@ -25,102 +25,120 @@
     let pointerId = null;
     let playing = false;
 
+    const photoUrl = (photo) => `assets/img/viaggi/${encodeURIComponent(photo.file)}`;
     const buildSlide = (photo, index) => {
-      const slide = document.createElement('article');
-      slide.className = 'swiper-slide esu-slide';
+      const slide = document.createElement('div');
+      slide.className = 'gallery-carousel-slide';
       slide.dataset.photoIndex = String(index);
       slide.setAttribute('role', 'group');
 
-      const card = document.createElement('div');
-      card.className = 'esu-card';
-      const backdrop = document.createElement('span');
-      backdrop.className = 'esu-media-backdrop';
-      backdrop.setAttribute('aria-hidden', 'true');
+      const imageBox = document.createElement('div');
+      imageBox.className = 'gallery-carousel-image';
+      const imageSource = new URL(photoUrl(photo), document.baseURI).href;
+      imageBox.style.setProperty('--hero-bg', `url("${imageSource}")`);
+      imageBox.style.backgroundImage = `url("${imageSource}")`;
+      const openButton = document.createElement('button');
+      openButton.className = 'gallery-carousel-image-open';
+      openButton.type = 'button';
+      openButton.setAttribute('aria-label', `Apri la fotografia: ${photo.titolo}`);
       const image = document.createElement('img');
-      image.className = 'esu-media';
-      image.src = `assets/img/viaggi/${encodeURIComponent(photo.file)}`;
+      image.src = photoUrl(photo);
       image.alt = photo.titolo;
-      image.loading = index === visible[0] ? 'eager' : 'lazy';
+      image.loading = index === visible[position] ? 'eager' : 'lazy';
       image.decoding = 'async';
       image.draggable = false;
-      card.append(backdrop, image);
-
-      const veil = document.createElement('span');
-      veil.className = 'esu-inactive-veil';
-      veil.setAttribute('aria-hidden', 'true');
-      card.append(veil);
-
-      const panel = document.createElement('div');
-      panel.className = 'esu-caption-panel';
-      const label = document.createElement('span');
-      label.className = 'esu-caption-category';
-      label.textContent = photo.categoria === 'mare' ? 'Mare · immersioni' : 'Viaggi · taccuino';
-      const heading = document.createElement('h2');
-      heading.className = 'esu-caption-title';
-      heading.textContent = photo.titolo;
-      const caption = document.createElement('p');
-      caption.className = 'esu-caption-text';
-      caption.textContent = photo.testo;
-      panel.append(label, heading, caption);
-      card.append(panel);
-      slide.append(card);
-
-      slide.addEventListener('click', () => {
+      image.addEventListener('error', () => slide.classList.add('has-image-error'), { once: true });
+      openButton.append(image);
+      openButton.addEventListener('click', () => {
         if (didDrag) return;
-        go(visible.indexOf(index));
         if (window.apriModaleImmagine) window.apriModaleImmagine(image.currentSrc || image.src, image.alt);
       });
-      slide.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          if (window.apriModaleImmagine) window.apriModaleImmagine(image.currentSrc || image.src, image.alt);
-        }
-      });
+      imageBox.append(openButton);
+      const figure = document.createElement('figure');
+      figure.className = 'gallery-carousel-figure';
+      figure.append(imageBox);
+      slide.append(figure);
       return slide;
     };
 
-    const renderSlides = () => {
-      track.replaceChildren(...visible.map((photoIndex) => buildSlide(photos[photoIndex], photoIndex)));
-      total.textContent = String(visible.length).padStart(2, '0');
-      layoutSlides();
+    const buildThumbnails = () => {
+      thumbnailList.replaceChildren(...visible.map((photoIndex, slideIndex) => {
+        const photo = photos[photoIndex];
+        const item = document.createElement('li');
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'gallery-carousel-thumbnail';
+        button.setAttribute('aria-label', `Visualizza ${photo.titolo}`);
+        button.setAttribute('aria-pressed', slideIndex === position ? 'true' : 'false');
+        const image = document.createElement('img');
+        image.src = photoUrl(photo);
+        image.alt = '';
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        button.append(image);
+        button.addEventListener('click', () => go(slideIndex));
+        item.append(button);
+        return item;
+      }));
     };
 
-    const layoutSlides = () => {
-      const slides = [...track.children];
-      if (!slides.length) return;
-      const count = slides.length;
-      slides.forEach((slide, index) => {
-        let relative = index - position;
-        if (relative > count / 2) relative -= count;
-        if (relative < -count / 2) relative += count;
-        const distance = Math.abs(relative);
-        const visibleSlide = distance <= 2;
-        const scale = Math.max(.72, 1 - distance * .095);
-        const shift = window.innerWidth < 650 ? 82 : 76;
-        slide.style.transform = `translate3d(calc(-50% + ${relative * shift}%), calc(-50% + ${distance * 18}px), ${-distance * 105}px) rotateY(${-relative * 30}deg) rotateZ(${relative * 1.2}deg) scale(${scale})`;
-        slide.style.opacity = visibleSlide ? String(1 - distance * .22) : '0';
-        slide.style.zIndex = String(10 - distance);
-        slide.style.visibility = visibleSlide ? 'visible' : 'hidden';
-        slide.setAttribute('aria-label', `${index + 1} / ${count}`);
-        slide.setAttribute('aria-hidden', String(relative !== 0));
-        slide.tabIndex = relative === 0 ? 0 : -1;
-        slide.querySelector('.esu-inactive-veil').classList.toggle('is-hidden', relative === 0);
-        slide.classList.remove('is-arriving');
-        slide.classList.toggle('is-near', visibleSlide);
-        slide.classList.toggle('is-active', relative === 0);
+    const updateCaption = () => {
+      const photo = photos[visible[position]];
+      if (!photo) return;
+      captionCategory.textContent = photo.categoria === 'mare' ? 'Mare · immersioni' : 'Viaggi · taccuino';
+      captionTitle.textContent = photo.titolo;
+      captionText.textContent = photo.testo;
+      progress.style.width = `${((position + 1) / visible.length) * 100}%`;
+      [...thumbnailList.querySelectorAll('.gallery-carousel-thumbnail')].forEach((button, index) => {
+        const selected = index === position;
+        button.setAttribute('aria-pressed', String(selected));
+        button.closest('li').classList.toggle('active', selected);
+        if (selected) button.scrollIntoView({
+          block: 'nearest',
+          inline: 'center',
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+        });
       });
-      const activeSlide = slides[position];
-      activeSlide.classList.add('is-arriving');
-      window.setTimeout(() => activeSlide.classList.remove('is-arriving'), 380);
-      counter.textContent = `${String(position + 1).padStart(2, '0')} / ${String(count).padStart(2, '0')}`;
-      progress.style.width = `${((position + 1) / count) * 100}%`;
+      previousButton.hidden = position === 0;
+      nextButton.hidden = position === visible.length - 1;
     };
 
-    const go = (nextPosition) => {
-      if (!visible.length) return;
-      position = (nextPosition + visible.length) % visible.length;
-      layoutSlides();
+    const renderSlides = () => {
+      if (!visible.length) {
+        track.replaceChildren();
+        thumbnailList.replaceChildren();
+        captionTitle.textContent = 'Nessuna fotografia';
+        captionText.textContent = 'Non ci sono immagini in questa sezione.';
+        captionCategory.textContent = '';
+        progress.style.width = '0%';
+        previousButton.hidden = true;
+        nextButton.hidden = true;
+        return;
+      }
+      track.replaceChildren(...visible.map((photoIndex) => buildSlide(photos[photoIndex], photoIndex)));
+      buildThumbnails();
+      updateSlides();
     };
+
+    const updateSlides = () => {
+      const slides = [...track.children];
+      slides.forEach((slide, index) => {
+        const active = index === position;
+        slide.classList.toggle('active', active);
+        slide.setAttribute('aria-label', photos[visible[index]].titolo);
+        slide.setAttribute('aria-hidden', String(!active));
+        const button = slide.querySelector('.gallery-carousel-image-open');
+        if (button) button.tabIndex = active ? 0 : -1;
+      });
+      updateCaption();
+    };
+
+    function go(nextPosition, wrap = false) {
+      if (!visible.length) return;
+      if (wrap) position = (nextPosition + visible.length) % visible.length;
+      else position = Math.max(0, Math.min(visible.length - 1, nextPosition));
+      updateSlides();
+    }
 
     const setFilter = (filter) => {
       visible = photos.map((photo, index) => ({ photo, index }))
@@ -151,7 +169,7 @@
       autoplayButton.setAttribute('aria-label', 'Metti in pausa la riproduzione');
       autoplayButton.querySelector('[aria-hidden="true"]').textContent = 'Ⅱ';
       autoplayButton.querySelector('.tool-label').textContent = 'Pausa';
-      timer = window.setInterval(() => go(position + 1), AUTOPLAY_INTERVAL_MS);
+      timer = window.setInterval(() => go(position + 1, true), 4000);
     };
     const toggleFullscreen = async () => {
       try {
@@ -162,25 +180,36 @@
       }
     };
 
-    document.getElementById('gallery-prev').addEventListener('click', () => go(position - 1));
-    document.getElementById('gallery-next').addEventListener('click', () => go(position + 1));
+    previousButton.addEventListener('click', () => go(position - 1));
+    nextButton.addEventListener('click', () => go(position + 1));
     filterButtons.forEach((button) => button.addEventListener('click', () => setFilter(button.dataset.filter)));
     autoplayButton.addEventListener('click', () => playing ? stop() : start());
     fullscreenButton.addEventListener('click', toggleFullscreen);
     document.addEventListener('fullscreenchange', () => {
-      fullscreenButton.querySelector('.tool-label').textContent = document.fullscreenElement === stage ? 'Esci' : 'Schermo intero';
-      fullscreenButton.setAttribute('aria-label', document.fullscreenElement === stage ? 'Esci dallo schermo intero' : 'Apri la galleria a schermo intero');
+      const isFullscreen = document.fullscreenElement === stage;
+      fullscreenButton.querySelector('.tool-label').textContent = isFullscreen ? 'Esci' : 'Schermo intero';
+      fullscreenButton.setAttribute('aria-label', isFullscreen ? 'Esci dallo schermo intero' : 'Apri la galleria a schermo intero');
     });
     document.addEventListener('keydown', (event) => {
       if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
-      if (event.target.closest('input, textarea, select, [contenteditable="true"]')) return;
       const lightbox = document.getElementById('lightbox-modal');
-      if (lightbox?.classList.contains('is-open')) return;
+      if (lightbox?.classList.contains('is-open')) {
+        event.preventDefault();
+        go(position + (event.key === 'ArrowRight' ? 1 : -1));
+        const activeImage = track.querySelector('.gallery-carousel-slide.active img');
+        if (activeImage && window.apriModaleImmagine) {
+          window.apriModaleImmagine(activeImage.currentSrc || activeImage.src, activeImage.alt);
+        }
+        return;
+      }
+      const photoButton = event.target.closest('.gallery-carousel-image-open');
+      if (!stage.contains(event.target) || (event.target.closest('button') && !photoButton) || event.target.closest('input, textarea, select, [contenteditable="true"]')) return;
       event.preventDefault();
       go(position + (event.key === 'ArrowRight' ? 1 : -1));
     });
     stage.addEventListener('pointerdown', (event) => {
       if (event.button !== undefined && event.button !== 0) return;
+      if (event.target.closest('button:not(.gallery-carousel-image-open)')) return;
       pointerStart = { x: event.clientX, y: event.clientY };
       pointerId = event.pointerId;
       didDrag = false;
@@ -202,13 +231,13 @@
       window.setTimeout(() => { didDrag = false; }, 80);
     });
     stage.addEventListener('pointercancel', () => { pointerStart = null; pointerId = null; });
-    stage.addEventListener('mouseenter', () => { if (playing) { window.clearInterval(timer); timer = null; } });
-    stage.addEventListener('mouseleave', () => { if (playing && !timer) timer = window.setInterval(() => go(position + 1), AUTOPLAY_INTERVAL_MS); });
-    document.addEventListener('visibilitychange', () => {
-      if (!playing) return;
-      if (document.hidden) { window.clearInterval(timer); timer = null; }
-      else if (!timer) timer = window.setInterval(() => go(position + 1), AUTOPLAY_INTERVAL_MS);
-    });
+    const pauseTimer = () => { if (playing && timer) { window.clearInterval(timer); timer = null; } };
+    const resumeTimer = () => { if (playing && !timer) timer = window.setInterval(() => go(position + 1, true), 4000); };
+    stage.addEventListener('mouseenter', pauseTimer);
+    stage.addEventListener('mouseleave', resumeTimer);
+    stage.addEventListener('focusin', pauseTimer);
+    stage.addEventListener('focusout', (event) => { if (!stage.contains(event.relatedTarget)) resumeTimer(); });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) pauseTimer(); else resumeTimer(); });
 
     renderSlides();
   };

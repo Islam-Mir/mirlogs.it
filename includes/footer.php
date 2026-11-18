@@ -29,17 +29,11 @@
 
         <div class="footer-inner">
 
-            <!-- Identità a sinistra -->
-            <div>
-                <span
-                    style="font-family: var(--font-serif); font-size: 1.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; display: block; color: var(--text-main);">
-                    <?php echo htmlspecialchars($sito_nome); ?>
-                </span>
-                <span
-                    style="font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-terracotta); font-weight: 700;">
-                    Storie, luoghi e progetti web
-                </span>
-            </div>
+            <!-- Identità a sinistra con identico effetto dell'header -->
+            <a href="index.php" class="mwn-brand" aria-label="MIR ISLAM, torna alla home">
+                <span class="moon" aria-hidden="true"></span>
+                <span aria-hidden="true"><?php echo renderBrandLetters("MIR ISLAM"); ?></span>
+            </a>
 
             <!-- Link social ed email a destra -->
             <div class="footer-socials">
@@ -61,8 +55,8 @@
         </div>
 
         <nav class="footer-privacy-links" aria-label="Privacy e cookie">
-            <a href="privacy.php" class="nav-link">Privacy Policy</a>
-            <button type="button" class="nav-link cookie-preferences-open" data-cookie-preferences>Preferenze Cookie</button>
+            <a href="privacy.php" class="footer-link">Privacy Policy</a>
+            <button type="button" class="footer-link cookie-preferences-open" data-cookie-preferences>Preferenze Cookie</button>
         </nav>
 
         <div class="footer-copy">
@@ -82,9 +76,8 @@
 </section>
 
 <!-- SCRIPT JAVASCRIPT MODULARI (Uno per ciascun compito) -->
-<script src="assets/js/menu.js"></script>
 <script src="assets/js/modal.js"></script>
-<script src="assets/js/carosello.js"></script>
+<script src="assets/js/carosello.js?v=<?php echo filemtime(__DIR__ . '/../assets/js/carosello.js'); ?>"></script>
 <script src="assets/js/galleria.js"></script>
 <script src="assets/js/chatbot.js"></script>
 <script src="assets/js/cookie-consent.js"></script>

@@ -3,10 +3,10 @@ $titolo_pagina = 'Sviluppo full stack';
 require_once 'includes/header.php';
 
 $aree_studio = [
-    ['numero' => '01', 'titolo' => 'Interfacce web', 'testo' => 'HTML, CSS responsive e JavaScript: struttura, stile, DOM, eventi, array e interazioni.'],
-    ['numero' => '02', 'titolo' => 'Backend', 'testo' => 'PHP, organizzazione del codice, Laravel, rotte, controller, validazione e operazioni CRUD.'],
-    ['numero' => '03', 'titolo' => 'Dati e API', 'testo' => 'SQL e MySQL, relazioni tra tabelle, chiavi esterne, richieste API e visualizzazione dei dati.'],
-    ['numero' => '04', 'titolo' => 'AI applicata', 'testo' => 'Un chatbot RAG sperimentale con Python, FastAPI, ChromaDB e modelli locali tramite Ollama.'],
+    ['titolo' => 'Interfacce web', 'testo' => 'HTML, CSS responsive e JavaScript: struttura, stile, DOM, eventi, array e interazioni.'],
+    ['titolo' => 'Backend', 'testo' => 'PHP, organizzazione del codice, Laravel, rotte, controller, validazione e operazioni CRUD.'],
+    ['titolo' => 'Dati e API', 'testo' => 'SQL e MySQL, relazioni tra tabelle, chiavi esterne, richieste API e visualizzazione dei dati.'],
+    ['titolo' => 'AI applicata', 'testo' => 'Un chatbot RAG sperimentale con Python, FastAPI, ChromaDB e modelli locali tramite Ollama.'],
 ];
 
 $progetti = [
@@ -70,7 +70,6 @@ const <span class="code-accent">percorso</span> = {
     <div class="study-grid">
       <?php foreach ($aree_studio as $area): ?>
         <article class="study-card">
-          <span class="study-number"><?php echo htmlspecialchars($area['numero']); ?></span>
           <h3><?php echo htmlspecialchars($area['titolo']); ?></h3>
           <p><?php echo htmlspecialchars($area['testo']); ?></p>
         </article>
@@ -87,7 +86,6 @@ const <span class="code-accent">percorso</span> = {
       <?php foreach ($progetti as $indice => $progetto): ?>
         <article class="tech-project-card">
           <div class="project-art project-art-<?php echo $indice + 1; ?>" aria-hidden="true">
-            <span class="project-art-index">0<?php echo $indice + 1; ?></span>
             <span class="project-art-mark"><?php echo htmlspecialchars($progetto['sigla']); ?></span>
             <span class="project-art-orbit"></span>
           </div>

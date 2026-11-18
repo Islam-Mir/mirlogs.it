@@ -46,12 +46,12 @@ $social_links = [
 // Ogni pagina ha un 'titolo' (mostrato nel menu) e un 'file' (il nome del file PHP)
 // L'icona è un emoji che appare accanto al titolo nel menu
 $pagine_menu = [
-    ['titolo' => 'Home',         'file' => 'index.php',        'icona' => '🏠'],
-    ['titolo' => 'Web & Codice', 'file' => 'informatica.php',  'icona' => '💻'],
-    ['titolo' => 'Viaggi',       'file' => 'viaggi.php',       'icona' => '✈️'],
-    ['titolo' => 'Libri',        'file' => 'libri.php',        'icona' => '📚'],
-    ['titolo' => 'Galleria',     'file' => 'galleria.php',     'icona' => '📸'],
-    ['titolo' => 'Contatti',     'file' => 'contatti.php',     'icona' => '📬'],
+    ['titolo' => 'Home',         'file' => 'index.php',        'icona' => '🏠', 'fx' => 'home'],
+    ['titolo' => 'Web & Codice', 'file' => 'informatica.php',  'icona' => '💻', 'fx' => 'code'],
+    ['titolo' => 'Viaggi',       'file' => 'viaggi.php',       'icona' => '✈️', 'fx' => 'travel'],
+    ['titolo' => 'Libri',        'file' => 'libri.php',        'icona' => '📚', 'fx' => 'books'],
+    ['titolo' => 'Galleria',     'file' => 'galleria.php',     'icona' => '📸', 'fx' => 'gallery'],
+    ['titolo' => 'Contatti',     'file' => 'contatti.php',     'icona' => '📬', 'fx' => 'contact'],
 ];
 
 // --- LISTA PAESI VISITATI ---
@@ -93,5 +93,38 @@ function paginaAttiva($file_pagina) {
     // Lo confronto con il file della voce di menu
     $pagina_corrente = basename($_SERVER['SCRIPT_NAME']);
     return $pagina_corrente === $file_pagina;
+}
+
+// Funzione helper per generare l'HTML delle lettere del brand con i 6 colori animati
+if (!function_exists('renderBrandLetters')) {
+    function renderBrandLetters($text) {
+        $colors = ['#1fa971', '#0fb5c9', '#3b82f6', '#8b5cf6', '#f59e0b', '#ec4899'];
+        $out = '';
+        $chars = preg_split('//u', $text, -1, PREG_SPLIT_NO_EMPTY);
+        $colorIndex = 0;
+        foreach ($chars as $i => $c) {
+            if ($c === ' ') {
+                $out .= '<span class="sp"></span>';
+            } else {
+                $color = $colors[$colorIndex % count($colors)];
+                $colorIndex++;
+                $out .= '<span class="ch" style="--i:' . $i . '"><span class="in" style="--c:' . $color . '; --d: 0;">' . htmlspecialchars($c) . '</span></span>';
+            }
+        }
+        return $out;
+    }
+}
+
+// Funzione helper per generare i caratteri span.l del titolo del nav-link
+if (!function_exists('renderNavLetters')) {
+    function renderNavLetters($text) {
+        $out = '';
+        $chars = preg_split('//u', $text, -1, PREG_SPLIT_NO_EMPTY);
+        foreach ($chars as $i => $c) {
+            $display = ($c === ' ') ? '&nbsp;' : htmlspecialchars($c);
+            $out .= '<span class="l" style="--i:' . $i . '">' . $display . '</span>';
+        }
+        return $out;
+    }
 }
 ?>
