@@ -1,7 +1,7 @@
 <?php
 /**
  * ============================================================
- * API_CHAT.PHP - Motore Intelligente Autonomo per il Chatbot
+ * RISPOSTE.PHP - Motore Intelligente Autonomo per l'Assistente
  * ============================================================
  * 
  * Questo script elabora le domande DIRETTAMENTE in PHP:

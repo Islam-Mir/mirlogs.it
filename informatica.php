@@ -34,6 +34,13 @@ $progetti = [
         'testo' => 'Un’interfaccia che esercita la lettura e la modifica dei dati tramite richieste API, collegando eventi e componenti del browser a un archivio JSON di sviluppo.',
         'stack' => ['JavaScript', 'Fetch', 'JSON Server', 'Bootstrap'],
     ],
+    [
+        'sigla' => 'KM', 'categoria' => 'Lavoro di gruppo · IA didattica',
+        'titolo' => 'Sito web Kernelmap',
+        'testo' => 'Sito web educativo su KernelMap, realizzato in gruppo con l’ausilio dell’IA generativa a scopo didattico. Un’esplorazione visuale e interattiva dedicata all’apprendimento collettivo.',
+        'stack' => ['HTML', 'CSS', 'JavaScript', 'IA generativa'],
+        'link' => 'https://kernelmap.org/',
+    ],
 ];
 ?>
 
@@ -98,6 +105,11 @@ const <span class="code-accent">percorso</span> = {
                 <li><?php echo htmlspecialchars($tecnologia); ?></li>
               <?php endforeach; ?>
             </ul>
+            <?php if (!empty($progetto['link'])): ?>
+            <a href="<?php echo htmlspecialchars($progetto['link']); ?>" target="_blank" rel="noopener noreferrer" class="magazine-link" style="display: inline-block; margin-top: 10px;">
+                Visita il sito <span aria-hidden="true">↗</span>
+            </a>
+            <?php endif; ?>
           </div>
         </article>
       <?php endforeach; ?>

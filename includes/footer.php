@@ -79,7 +79,7 @@
 <script src="assets/js/modal.js"></script>
 <script src="assets/js/carosello.js?v=<?php echo filemtime(__DIR__ . '/../assets/js/carosello.js'); ?>"></script>
 <script src="assets/js/galleria.js"></script>
-<script src="assets/js/chatbot.js"></script>
+<script src="assets/js/assistente.js"></script>
 <script src="assets/js/cookie-consent.js"></script>
 
 </body>

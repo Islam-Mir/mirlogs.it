@@ -1,12 +1,12 @@
 /**
  * ============================================================
- * CHATBOT.JS - Assistente Virtuale Autonomo per il Sito
+ * ASSISTENTE.JS - Assistente Virtuale Autonomo per il Sito
  * ============================================================
  * 
  * Questo script gestisce:
  * 1. Apertura e chiusura della finestra chat (#chatbot-window)
  * 2. Visualizzazione dei fumetti utente e bot
- * 3. Chiamata HTTP asincrona (fetch) a api_chat.php interno al sito
+ * 3. Chiamata HTTP asincrona (fetch) a risposte.php interno al sito
  * 4. Click sui suggerimenti rapidi (chip)
  * 
  * Tutto rimane al 100% all'interno della cartella del sito!
@@ -14,7 +14,7 @@
  */
 
 // Indirizzo dello script PHP interno al sito
-const URL_CHATBOT = "api_chat.php";
+const URL_ASSISTENTE = "risposte.php";
 
 // Funzione 1: Apre o chiude la finestra della chat
 function toggleFinestraChat() {
@@ -46,9 +46,9 @@ function aggiungiFumetto(testo, tipo) {
   return bolla;
 }
 
-// Funzione 3: Esegue la richiesta asincrona ad api_chat.php
+// Funzione 3: Esegue la richiesta asincrona ad risposte.php
 async function chiediAlBot(testoDomanda) {
-  const risposta = await fetch(URL_CHATBOT, {
+  const risposta = await fetch(URL_ASSISTENTE, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
