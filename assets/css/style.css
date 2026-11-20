@@ -2912,6 +2912,38 @@ img {
   line-height: 1.65;
 }
 
+.gallery-carousel-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(20px, 3vw, 42px);
+  background: radial-gradient(ellipse at 100% 0, rgba(201, 151, 66, .13), transparent 48%), var(--bg-sand);
+  color: var(--text-main);
+}
+
+.gallery-carousel-card .gallery-card-category {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--accent-terracotta);
+  font: .65rem var(--font-mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.gallery-carousel-card h2 {
+  margin: 0 0 13px;
+  color: var(--text-main);
+  font: 600 clamp(2rem, 3.25vw, 4rem)/.98 Alegreya, Georgia, serif;
+  letter-spacing: -.035em;
+}
+
+.gallery-carousel-card p {
+  color: var(--text-muted);
+  font-size: .88rem;
+  line-height: 1.65;
+}
+
 .gallery-carousel-footer {
   padding: 18px 0 0;
 }

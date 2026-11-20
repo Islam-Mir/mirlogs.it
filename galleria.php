@@ -48,9 +48,6 @@ $galleria = [
     ['file'=>'turt5.png','titolo'=>'L’oceano da vicino','testo'=>'Un ricordo subacqueo che porto con me.','categoria'=>'mare'],
 ];
 
-$galleria = array_values(array_filter($galleria, static function ($foto) {
-    return is_file(__DIR__ . '/assets/img/viaggi/' . $foto['file']);
-}));
 $galleriaJson = json_encode($galleria, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
 ?>
 
@@ -79,7 +76,7 @@ $galleriaJson = json_encode($galleria, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_A
   <section class="gallery-carousel" id="gallery-stage" tabindex="0" aria-label="Carosello fotografico. Usa le frecce per navigare.">
     <div class="gallery-carousel-main">
       <div class="gallery-carousel-photo" id="gallery-photo-viewport">
-        <div class="gallery-carousel-slides" id="gallery-track" aria-live="polite"></div>
+        <div class="gallery-carousel-track" id="gallery-track" aria-live="polite"></div>
         <div class="gallery-carousel-top"><span class="gallery-live-mark"><i></i> Diario fotografico</span></div>
         <div class="gallery-carousel-controls" aria-label="Controlli fotografia">
           <button class="gallery-carousel-arrow gallery-carousel-prev" id="gallery-prev" type="button" aria-label="Fotografia precedente"><svg viewBox="0 0 66 43" aria-hidden="true" focusable="false"><path class="gallery-arrow-path-one" d="M40 4 44 0l22 21-22 22-4-4 17-17L40 4Z"/><path class="gallery-arrow-path-two" d="M20 4 24 0l22 21-22 22-4-4 17-17L20 4Z"/><path class="gallery-arrow-path-three" d="M0 4 4 0l22 21L4 43l-4-4 17-17L0 4Z"/></svg></button>
