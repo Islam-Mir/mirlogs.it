@@ -2906,12 +2906,6 @@ img {
   letter-spacing: -.035em;
 }
 
-.gallery-caption-card p {
-  color: var(--text-muted);
-  font-size: .88rem;
-  line-height: 1.65;
-}
-
 .gallery-carousel-card {
   display: flex;
   flex-direction: column;
@@ -2920,6 +2914,8 @@ img {
   padding: clamp(20px, 3vw, 42px);
   background: radial-gradient(ellipse at 100% 0, rgba(201, 151, 66, .13), transparent 48%), var(--bg-sand);
   color: var(--text-main);
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .gallery-carousel-card .gallery-card-category {
@@ -2929,6 +2925,7 @@ img {
   font: .65rem var(--font-mono);
   letter-spacing: .12em;
   text-transform: uppercase;
+  overflow-wrap: break-word;
 }
 
 .gallery-carousel-card h2 {
@@ -2936,12 +2933,16 @@ img {
   color: var(--text-main);
   font: 600 clamp(2rem, 3.25vw, 4rem)/.98 Alegreya, Georgia, serif;
   letter-spacing: -.035em;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .gallery-carousel-card p {
   color: var(--text-muted);
   font-size: .88rem;
   line-height: 1.65;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .gallery-carousel-footer {
