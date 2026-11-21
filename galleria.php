@@ -40,12 +40,12 @@ $galleria = [
     ['file'=>'M18.jpg','titolo'=>'Tra memoria e scoperta','testo'=>'Un posto nuovo diventa parte dei ricordi.','categoria'=>'mondo'],
     ['file'=>'M19.jpg','titolo'=>'Un frammento del viaggio','testo'=>'Una fotografia, una sensazione, una pagina in più.','categoria'=>'mondo'],
     ['file'=>'italia.jpg','titolo'=>'Italia, casa e scoperta','testo'=>'Anche i luoghi familiari sanno mostrarsi in modo nuovo.','categoria'=>'mondo'],
-    ['file'=>'D1.jpg','titolo'=>'Sotto la superficie','testo'=>'Un cambio di prospettiva, nel silenzio dell’acqua.','categoria'=>'mare'],
-    ['file'=>'turt1.jpg','titolo'=>'Incontro nel blu','testo'=>'Una tartaruga marina attraversa il suo mondo con calma.','categoria'=>'mare'],
-    ['file'=>'turt2.jpg','titolo'=>'Compagnia silenziosa','testo'=>'Un incontro ravvicinato durante un’immersione.','categoria'=>'mare'],
-    ['file'=>'turt3.jpg','titolo'=>'Movimento leggero','testo'=>'La grazia di una tartaruga tra luce e acqua.','categoria'=>'mare'],
-    ['file'=>'turt4.jpg','titolo'=>'Un mondo sommerso','testo'=>'La vita marina continua, lontano dal rumore di superficie.','categoria'=>'mare'],
-    ['file'=>'turt5.png','titolo'=>'L’oceano da vicino','testo'=>'Un ricordo subacqueo che porto con me.','categoria'=>'mare'],
+    ['file'=>'turt1.jpg','titolo'=>'Sotto la superficie','testo'=>'Un cambio di prospettiva, nel silenzio dell’acqua.','categoria'=>'mare'],
+    ['file'=>'turt2.jpg','titolo'=>'Incontro nel blu','testo'=>'Una tartaruga marina attraversa il suo mondo con calma.','categoria'=>'mare'],
+    ['file'=>'turt3.jpg','titolo'=>'Compagnia silenziosa','testo'=>'Un incontro ravvicinato durante un’immersione.','categoria'=>'mare'],
+    ['file'=>'turt4.jpg','titolo'=>'Movimento leggero','testo'=>'La grazia di una tartaruga tra luce e acqua.','categoria'=>'mare'],
+    ['file'=>'turt5.png','titolo'=>'Un mondo sommerso','testo'=>'La vita marina continua, lontano dal rumore di superficie.','categoria'=>'mare'],
+    ['file'=>'turt6.jpg','titolo'=>'L’oceano da vicino','testo'=>'Un ricordo subacqueo che porto con me.','categoria'=>'mare'],
 ];
 
 $galleriaJson = json_encode($galleria, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
